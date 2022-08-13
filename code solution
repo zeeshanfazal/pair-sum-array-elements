@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+bool flag=false; //global variable
+vector <int> pairsum (vector <int> arr , int sum)
+{
+
+    vector <int> result;
+
+    unordered_set <int> s;int i=0;
+    for (i=0;i<arr.size();i++)
+    {
+
+        if(s.find(sum-arr[i])!=s.end())
+        {
+            result.push_back(arr[i]);
+            result.push_back(sum-arr[i]);
+            flag=true;
+
+            break;
+        }
+    s.insert(arr[i]);
+    }
+
+
+
+
+    return (result);
+}
+
+int main()
+{
+    vector <int> arr(10,7);
+    vector<int> v;
+
+    cout<< "size = " <<arr.size()<<endl;
+     cout<< "elements are : " <<endl;
+     int i;
+
+   for (i=0;i<arr.size();i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+
+  v=pairsum(arr,0);
+  if (flag==true)
+  {
+      for (i=0;i<v.size();i++)
+       {
+        cout<< v[i]<<",";
+       }
+  }
+
+    else
+         cout<<"NO SUCH COMBINATIONS FOUND";
+
+
+    return 0;
+}
